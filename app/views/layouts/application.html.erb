@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Devjobs</title>
+    <title>Jobpost</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <header id="fh5co-header" role="banner">
+      <%= render 'layouts/navigation' %>
+    </header>
+
+  <div class="container">
+    <%= render 'layouts/messages' %>
     <%= yield %>
+  </div>
+  <footer id="fh5co-footer" role="contentinfo">
+
+		<div class="container">
+
+			<div class="col-md-12 fh5co-copyright text-center">
+				<p>&copy; 2016 All Rights Reserved. Made with <i style="color: red;" class="fa fa-heart"></i> by <a href="http://www.adrianprieto.com/" target="_blank">Adrian Prieto</a></p>
+				<p><a href="http://www.twitter.com/adrianprieto00" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
+           <a href="#" target="_blank"><i class="fa fa-github fa-2x"></i></a>
+           <a href="#" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a>
+           <a href="#" target="_blank"><i class="fa fa-youtube fa-2x"></i></a></p>
+			</div>
+
+		</div>
+	</footer>
+
   </body>
 </html>

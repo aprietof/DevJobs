@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="header-inner">
+    <h1><a href="index.html">DevJobs</a></h1>
+    <nav role="navigation">
+      <ul>
+        <% if !current_user %>
+          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+            <li class="cta"><%= link_to "Sign up", new_registration_path(resource_name) %></li>
+          <% end -%>
+          <%- if controller_name != 'sessions' %>
+            <li class="cta"><%= link_to "Log in", new_session_path(resource_name) %></li>
+          <% end -%>
+        <% else %>
+          <li class="cta"><%= link_to "Log out", destroy_user_session_path, :method => 'destroy' %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</div>
