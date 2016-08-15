@@ -11,7 +11,7 @@
             <li class="cta"><%= link_to "Log in", new_session_path(resource_name) %></li>
           <% end -%>
         <% else %>
-          <li class="cta"><%= link_to "Log out", destroy_user_session_path, :method => 'destroy' %></li>
+          <li class="cta"><%= link_to "Log out", destroy_user_session_path, :method => 'delete' %></li>
         <% end %>
       </ul>
     </nav>
