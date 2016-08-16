@@ -9,4 +9,8 @@ class Job < ApplicationRecord
   def posting_date
     self.created_at.strftime("%A, %b %d")
   end
+
+  def self.by_category(category_id)
+    where(category: category_id)
+  end
 end

@@ -3,7 +3,12 @@ class JobsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
 
   def index
-    @jobs = Job.all_sort_by_date.page(params[:page]).per(5)
+    @categories = Category.all
+    if !params[:category.blank?]
+      @jobs = Job.by_category(params[:category]).all_sort_by_date.page(params[:page]).per(5)
+    else
+      @jobs = Job.all_sort_by_date.page(params[:page]).per(5)
+    end
   end
 
   def new
