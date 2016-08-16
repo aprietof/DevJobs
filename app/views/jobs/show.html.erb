@@ -1,2 +1,24 @@
-<h1>Jobs#show</h1>
-<p>Find me in app/views/jobs/show.html.erb</p>
+<div class="row">
+
+  <div class="col-sm-8">
+    <div class="well">
+      <h1><%= @job.title %></h1>
+      <p><%= @job.location %></p>
+      <p>Posted: <%= @job.created_at.strftime("%A, %b %d") %></p>
+      <h3>Company:</h3>
+      <p><%= @job.company %></p>
+      <h4>Description:</h4>
+      <p><%= @job.description %></p>
+      <p>Company Url: <%= link_to @job.url, "http://#{@job.url}" %></p>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card">
+
+    </div>
+  </div>
+
+</div>
+
+<%= button_to "Back", jobs_path, method: "get", class: "btn btn-primary btn-outline btn-sm" %>
