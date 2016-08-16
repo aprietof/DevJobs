@@ -6,7 +6,9 @@ class JobsController < ApplicationController
     @locations = Job.locations
     @categories = Category.all
 
-    if !params[:category].blank?
+    if !params[:category].blank? && !params[:location].blank?
+      @jobs = Job.by_location_and_category(params[:category], params[:location]).order_and_paginated(params[:page])
+    elsif !params[:category].blank?
       @jobs = Job.by_category(params[:category]).order_and_paginated(params[:page])
     elsif !params[:location].blank?
       @jobs = Job.by_location(params[:location]).order_and_paginated(params[:page])

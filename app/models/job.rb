@@ -14,6 +14,10 @@ class Job < ApplicationRecord
     where(location: location_name)
   end
 
+  def self.by_location_and_category(category_id, location_name)
+    self.by_category(category_id).by_location(location_name)
+  end
+
   def self.all_sort_by_date
     self.all.order(created_at: "DESC" )
   end
