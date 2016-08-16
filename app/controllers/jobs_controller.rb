@@ -3,7 +3,7 @@ class JobsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
 
   def index
-    @jobs = Job.all
+    @jobs = Job.all.page(params[:page]).per(5)
   end
 
   def new
