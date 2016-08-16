@@ -1,15 +1,18 @@
-<h1>Jobs</h1>
+<div class="col-sm-3">
 
-<% @jobs.each do |job| %>
-<div class="well">
-  <h2><%= job.title%></h2>
-  <h4>Description:</h4>
-  <p><%= job.description %></p>
-  <h4>Company:</h4>
-  <p><strong><%= job.company %></strong></p>
-  <h4>Location:</h4>
-  <p><%= job.location %></p>
-  <h4>Url:</h4>
-  <p><%= job.url %></p>
 </div>
-<% end %>
+
+<div class="col-sm-6">
+  <h1>Jobs</h1>
+  <% @jobs.each do |job| %>
+  <div class="well">
+    <h3><%= link_to job.title, job_path(job)%></h3>
+    <p>Company: <%= job.company %></p>
+    <p><%= job.description %></p>
+  </div>
+  <% end %>
+</div>
+
+<div class="col-sm-3">
+
+</div>
