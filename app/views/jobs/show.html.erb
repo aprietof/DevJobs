@@ -9,7 +9,15 @@
       <p><%= @job.company %></p>
       <h4>Description:</h4>
       <p><%= @job.description %></p>
-      <p>Company Url: <%= link_to @job.url, "http://#{@job.url}" %></p>
+
+      <div class="row">
+        <div class="col-sm-10">
+          <p>Company Url: <%= link_to @job.url, "http://#{@job.url}" %></p>
+        </div>
+        <div class="col-sm-2">
+          <%= button_to "Apply", jobs_path, method: "get", class: "btn btn-primary btn-outline btn-md" %>
+        </div>
+      </div>
     </div>
   </div>
 
