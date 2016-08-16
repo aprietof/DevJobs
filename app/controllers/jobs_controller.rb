@@ -3,12 +3,17 @@ class JobsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
 
   def index
+    @locations = Job.locations
     @categories = Category.all
-    if !params[:category.blank?]
-      @jobs = Job.by_category(params[:category]).all_sort_by_date.page(params[:page]).per(5)
+
+    if !params[:category].blank?
+      @jobs = Job.by_category(params[:category]).order_and_paginated(params[:page])
+    elsif !params[:location].blank?
+      @jobs = Job.by_location(params[:location]).order_and_paginated(params[:page])
     else
-      @jobs = Job.all_sort_by_date.page(params[:page]).per(5)
+      @jobs = Job.order_and_paginated(params[:page])
     end
+
   end
 
   def new

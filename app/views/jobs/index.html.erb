@@ -3,7 +3,8 @@
   <div>
     <h3>Filter Jobs:</h3>
     <%= bootstrap_form_tag url: '/jobs', method: 'get' do %>
-      <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"), include_blank: "Select a category", class: "btn btn-default btn-lg dropdown-toggle"%>
+      <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"), include_blank: "Select Category", class: "btn btn-default btn-lg dropdown-toggle"%>
+      <%= select_tag "location", options_for_select(@locations), include_blank: "Select Location", class: "btn btn-default btn-lg dropdown-toggle"%>
       <%= submit_tag "Filter", class: "btn btn-primary btn-outline btn-sm" %>
     <% end %>
   </div> <!-- End Filter jobs -->
