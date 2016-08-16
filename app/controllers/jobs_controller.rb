@@ -3,7 +3,7 @@ class JobsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
 
   def index
-    @jobs = Job.all.page(params[:page]).per(5)
+    @jobs = Job.all_sort_by_date.page(params[:page]).per(5)
   end
 
   def new
@@ -11,7 +11,7 @@ class JobsController < ApplicationController
   end
 
   def show
-    @jobs = Job.all.order(created_at: "DESC" ).limit(8)
+    @jobs = Job.all_sort_by_date.page.limit(8)
   end
 
   def create
@@ -40,6 +40,6 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:title, :description, :company,:url, :location)
+    params.require(:job).permit(:title, :description, :company,:url, :location, :category_id)
   end
 end
