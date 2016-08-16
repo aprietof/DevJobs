@@ -22,13 +22,14 @@
   </div>
 
   <div class="col-sm-3">
-    <div class="well">
-      <h4>Latest Jobs</h4>
-      <hr>
-      <% @jobs.each do |job| %>
-        <small><%= job.location%></small> | <small><%= job.posting_date %></small>
-        <h5><%= link_to job.title, job_path(job) %></h5>
-      <% end %>
+    <div class="panel panel-default">
+      <div class="panel-heading">Latest Jobs</div>
+        <div class="panel-body">
+          <% @jobs.each do |job| %>
+            <small><%= job.location%></small> | <small><%= job.posting_date %></small>
+            <h5><%= link_to job.title, job_path(job) %></h5>
+          <% end %>
+        </div>
     </div>
   </div>
 

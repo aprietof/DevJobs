@@ -7,7 +7,7 @@
   <% @jobs.each do |job| %>
   <div class="well">
     <h3><%= link_to job.title, job_path(job)%></h3>
-    <p>Company: <%= job.company %></p>
+    <small><%= job.company %> | <%= job.posting_date %> | <%= fa_icon "map-marker" %> <%= job.location %> </small>
     <p><%= job.description %></p>
   </div>
   <% end %>
