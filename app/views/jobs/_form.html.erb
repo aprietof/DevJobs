@@ -1,0 +1,27 @@
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="well">
+      <%= bootstrap_form_for @job do |f| %>
+
+      <% if current_user.errors.any? %>
+          <div id="error_explanation" class="errors">
+            <ul>
+            <% current_user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= f.text_field :title %>
+        <%= f.text_field :company  %>
+        <%= f.text_area :description %>
+        <%= f.text_field :location %>
+        <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Select Category' %>
+        <%= f.url_field :url, placeholder: "optional..." %>
+        <%= f.submit class: "btn btn-primary btn-outline btn-sm" %>
+      <% end %>
+    </div>
+  </div>
+</div>
