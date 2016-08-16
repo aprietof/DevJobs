@@ -11,6 +11,7 @@ class JobsController < ApplicationController
   end
 
   def show
+    @jobs = Job.all.order(created_at: "DESC" ).limit(8)
   end
 
   def create

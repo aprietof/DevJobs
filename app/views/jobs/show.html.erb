@@ -4,7 +4,7 @@
     <div class="well">
       <h1><%= @job.title %></h1>
       <p><%= @job.location %></p>
-      <p>Posted: <%= @job.created_at.strftime("%A, %b %d") %></p>
+      <p>Posted: <%= @job.posting_date %></p>
       <h3>Company:</h3>
       <p><%= @job.company %></p>
       <h4>Description:</h4>
@@ -21,9 +21,14 @@
     </div>
   </div>
 
-  <div class="col-sm-4">
-    <div class="card">
-
+  <div class="col-sm-3">
+    <div class="well">
+      <h4>Latest Jobs</h4>
+      <hr>
+      <% @jobs.each do |job| %>
+        <small><%= job.location%></small> | <small><%= job.posting_date %></small>
+        <h5><%= link_to job.title, job_path(job) %></h5>
+      <% end %>
     </div>
   </div>
 
