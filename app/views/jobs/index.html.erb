@@ -30,5 +30,15 @@
 </div> <!-- end col-sm-6 -->
 
 <div class="col-sm-3">
+  <div class="panel panel-default filter">
+    <div class="panel-heading">Categories</div>
+    <div class="panel-body">
+      <% @categories.each do |category| %>
+        <h4><%= link_to category.name, jobs_path(category: category.id) %></h4>
+      <% end %>
+    </div>
+    <div class="panel-footer"></div>
+  </div>
+</div>
 
 </div><!-- end col-sm-3 -->
