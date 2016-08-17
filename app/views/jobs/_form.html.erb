@@ -19,6 +19,7 @@
         <%= f.text_area :description %>
         <%= f.text_field :location %>
         <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Select Category' %>
+        <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :name %>
         <%= f.url_field :url, placeholder: "optional..." %>
         <%= f.submit class: "btn btn-primary btn-outline btn-sm" %>
       <% end %>
