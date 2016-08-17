@@ -1,6 +1,8 @@
 class Job < ApplicationRecord
   validates_presence_of :title, :description, :company, :location, :category_id
   belongs_to :category
+  has_many :jobs_skills
+  has_many :skills, :through => :jobs_skills
 
   def posting_date
     self.created_at.strftime("%A, %b %d")
