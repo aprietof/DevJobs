@@ -5,7 +5,7 @@ class Job < ApplicationRecord
   has_many :skills, :through => :jobs_skills
 
   def posting_date
-    self.created_at.strftime("%A, %b %d")
+    self.created_at.strftime("%b %d, %Y")
   end
 
   def self.by_category(category_id)
@@ -31,4 +31,12 @@ class Job < ApplicationRecord
   def self.locations
     self.all.collect {|job| job.location}.uniq
   end
+
+  def skills_attributes=(skill_attributes)
+    skill_attributes.values.each do |skill_attribute|
+      skill = Skill.find_or_create_by(skill_attribute)
+      self.jobs_skills.build(skill: skill)
+    end
+  end
+
 end

@@ -39,6 +39,8 @@ class JobsController < ApplicationController
   end
 
   def update
+    @job.update(job_params)
+    redirect_to @job
   end
 
   def destroy
@@ -52,6 +54,6 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:title, :description, :company,:url, :location, :category_id, skill_ids:[])
+    params.require(:job).permit(:title, :description, :company,:url, :location, :category_id, skill_ids:[], skills_attributes:[:name])
   end
 end
