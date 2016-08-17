@@ -25,6 +25,10 @@ class Job < ApplicationRecord
     self.all.order(created_at: "DESC" )
   end
 
+  def self.all_sort_by_date_skip_first
+    self.all_sort_by_date.limit(9)[1..-1]
+  end
+
   def self.order_and_paginated(params)
     self.all_sort_by_date.page(params).per(5)
   end

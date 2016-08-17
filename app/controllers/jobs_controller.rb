@@ -3,6 +3,7 @@ class JobsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
 
   def index
+    @latest_jobs = Job.all_sort_by_date_skip_first
     @locations = Job.locations
     @categories = Category.all
 

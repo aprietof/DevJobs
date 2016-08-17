@@ -30,14 +30,14 @@
 </div> <!-- end col-sm-6 -->
 
 <div class="col-sm-3">
-  <div class="panel panel-default filter">
-    <div class="panel-heading">Categories</div>
-    <div class="panel-body">
-      <% @categories.each do |category| %>
-        <h4><%= link_to category.name, jobs_path(category: category.id) %></h4>
-      <% end %>
-    </div>
-    <div class="panel-footer"></div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Latest Jobs</div>
+      <div class="panel-body">
+        <% @latest_jobs.each do |job| %>
+          <small><%= job.location%></small> | <small><%= job.posting_date %></small>
+          <h5><%= link_to job.title, job_path(job) %></h5>
+        <% end %>
+      </div>
   </div>
 </div>
 
