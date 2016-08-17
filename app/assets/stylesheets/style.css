@@ -226,6 +226,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .container.main {
+  margin-top: 3em;
   padding-bottom: 1em;
   min-height: 500px;
 }
@@ -235,7 +236,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .panel.panel-default.filter {
-  margin-top: 4.4em;
+
 }
 
 .well {
