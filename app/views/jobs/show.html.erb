@@ -13,14 +13,19 @@
 
 
       <div class="row">
-        <div class="col-sm-10">
+        <div class="col-sm-6">
           <h4>Skills Required:</h4>
           <% @job.skills.each do |skill| %>
             <small><%= skill.name %> | </small>
           <% end %>
         </div>
-        <div class="col-sm-2">
+      </div>
+      <div class="row">
+        <div class="col-sm-2 pull-right">
           <%= button_to "Apply", jobs_path, method: "get", class: "btn btn-primary btn-outline btn-md" %>
+        </div>
+        <div class="col-sm-2 pull-right">
+          <%= button_to "Edit", edit_job_path, method: "get", class: "btn btn-warning btn-outline btn-md" %>
         </div>
       </div>
     </div>
