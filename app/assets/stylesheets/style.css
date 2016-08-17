@@ -231,6 +231,10 @@ h1, h2, h3, h4, h5, h6, figure {
   min-height: 500px;
 }
 
+textarea.form-control {
+    height: 150px;
+}
+
 .container {
   padding-bottom: 1em;
 }
