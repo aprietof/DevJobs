@@ -6,8 +6,10 @@
         <% if !current_user %>
             <li class="cta"><%= link_to "Sign up", new_user_registration_path %></li>
             <li class="cta"><%= link_to "Log in", new_user_session_path %></li>
-        <% else %>
+        <% elsif current_user.company? %>
           <li class="cta"><%= link_to "Post a Job Offer", new_job_path %></li>
+          <li class="cta"><%= link_to "Log out", destroy_user_session_path, :method => 'delete' %></li>
+        <% else %>
           <li class="cta"><%= link_to "Log out", destroy_user_session_path, :method => 'delete' %></li>
         <% end %>
       </ul>
