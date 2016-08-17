@@ -20,16 +20,20 @@
           <% end %>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-2 pull-right">
-          <%= button_to "Apply", jobs_path, method: "get", class: "btn btn-primary btn-outline btn-md" %>
-        </div>
-        <div class="col-sm-2 pull-right">
-          <%= button_to "Edit", edit_job_path, method: "get", class: "btn btn-warning btn-outline btn-md" %>
-        </div>
-        <div class="col-sm-2 pull-right">
-          <%= button_to "Delete", job_path, method: "delete", class: "btn btn-danger btn-outline btn-md" %>
-        </div>
+
+        <div class="row">
+        <% if current_user.user? %>
+          <div class="col-sm-2 pull-right">
+            <%= button_to "Apply", jobs_path, method: "get", class: "btn btn-primary btn-outline btn-md" %>
+          </div>
+        <% else %>
+          <div class="col-sm-2 pull-right">
+            <%= button_to "Edit", edit_job_path, method: "get", class: "btn btn-warning btn-outline btn-md" %>
+          </div>
+          <div class="col-sm-2 pull-right">
+            <%= button_to "Delete", job_path, method: "delete", class: "btn btn-danger btn-outline btn-md" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

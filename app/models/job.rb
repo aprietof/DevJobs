@@ -1,6 +1,6 @@
 class Job < ApplicationRecord
-  validates_presence_of :title, :description, :company, :location, :category_id
-  belongs_to :company, :class_name => 'User'
+  validates_presence_of :title, :description, :company_name, :location, :category_id
+  belongs_to :company, :class_name => 'User', :foreign_key => 'user_id'
   belongs_to :category
   has_many :jobs_skills
   has_many :skills, :through => :jobs_skills

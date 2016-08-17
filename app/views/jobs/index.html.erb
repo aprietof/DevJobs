@@ -21,7 +21,7 @@
     <% @jobs.each do |job| %>
     <div class="well">
       <h3><%= link_to job.title, job_path(job)%></h3>
-      <small><%= job.company %> | <%= job.posting_date %> | <%= fa_icon "map-marker" %> <%= job.location %> </small>
+      <small><%= job.company_name %> | <%= job.posting_date %> | <%= fa_icon "map-marker" %> <%= job.location %> </small>
       <p><%= sanitize(truncate(job.description, length: 150)) %></p>
     </div>
     <% end %>
