@@ -239,8 +239,10 @@ h1, h2, h3, h4, h5, h6, figure {
 
 }
 
-.well {
-
+#flash_notice,
+#flash_alert {
+  padding-bottom: 1em;
+  margin-left: 1em;
 }
 
 .fh5co-social {

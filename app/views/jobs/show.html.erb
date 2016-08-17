@@ -3,16 +3,21 @@
   <div class="col-sm-8">
     <div class="well">
       <h1><%= @job.title %></h1>
-      <p><%= @job.category.name %></p>
+      <small>Posted: <%= @job.posting_date %></small>
+      <h4><span class="label label-default"><%= @job.category.name %></span></h4>
       <h3>Company:</h3>
-      <p><%= fa_icon "industry" %> <%= @job.company %> | <%= fa_icon "map-marker" %> <%= @job.location %></p>
+      <p><%= fa_icon "industry" %> <%= @job.company.capitalize %> | <%= fa_icon "map-marker" %> <%= @job.location %></p>
       <h4>Description:</h4>
       <p><%= @job.description %></p>
+      <h5>Company Url: <%= link_to @job.url, "http://#{@job.url}" %></h5>
+
 
       <div class="row">
         <div class="col-sm-10">
-          <small>Posted: <%= @job.posting_date %></small>
-          <p>Company Url: <%= link_to @job.url, "http://#{@job.url}" %></p>
+          <h4>Skills Required:</h4>
+          <% @job.skills.each do |skill| %>
+            <small><%= skill.name %> | </small>
+          <% end %>
         </div>
         <div class="col-sm-2">
           <%= button_to "Apply", jobs_path, method: "get", class: "btn btn-primary btn-outline btn-md" %>
