@@ -6,7 +6,7 @@
       <small>Posted: <%= @job.posting_date %></small>
       <h4><span class="label label-default"><%= @job.category.name %></span></h4>
       <h3>Company:</h3>
-      <p><%= fa_icon "industry" %> <%= @job.company.capitalize %> | <%= fa_icon "map-marker" %> <%= @job.location %></p>
+      <p><%= fa_icon "industry" %> <%= @job.company_name.capitalize %> | <%= fa_icon "map-marker" %> <%= @job.location %></p>
       <h4>Description:</h4>
       <p><%= @job.description %></p>
       <h5>Company Url: <%= link_to @job.url, "http://#{@job.url}" %></h5>
