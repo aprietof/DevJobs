@@ -1,6 +1,4 @@
-class User < ApplicationRecord
-  include Pundit
-  
+class User < ApplicationRecord  
   after_initialize :set_default_role
 
   devise :database_authenticatable, :registerable,
