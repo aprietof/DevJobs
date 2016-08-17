@@ -15,7 +15,7 @@
         <% end %>
 
         <%= f.text_field :title %>
-        <%= f.text_field :company  %>
+        <%= f.text_field :company_name %>
         <%= f.text_area :description %>
         <%= f.text_field :location %>
         <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Select Category'%>
@@ -24,7 +24,8 @@
         <%= f.fields_for :skills, @job.skills.build do |skills_fields| %>
           <%= skills_fields.text_field :name, label: "Another Skill (Optional)", placeholder: "Add a new skill here..." %>
         <% end %>
-        <%= f.url_field :url, placeholder: "optional..." %>
+        <%= f.url_field :url, placeholder: "http//...", label: "Url (Optional)" %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.submit class: "btn btn-primary btn-outline btn-sm" %>
       <% end %>
     </div>
