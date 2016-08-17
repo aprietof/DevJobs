@@ -14,13 +14,17 @@
 
 
 <div class="col-sm-6">
-  
-  <% @jobs.each do |job| %>
-  <div class="well">
-    <h3><%= link_to job.title, job_path(job)%></h3>
-    <small><%= job.company %> | <%= job.posting_date %> | <%= fa_icon "map-marker" %> <%= job.location %> </small>
-    <p><%= sanitize(truncate(job.description, length: 150)) %></p>
-  </div>
+
+  <% if @jobs.empty? %>
+    <h1>Sorry, no jobs found.</h1>
+  <% else %>
+    <% @jobs.each do |job| %>
+    <div class="well">
+      <h3><%= link_to job.title, job_path(job)%></h3>
+      <small><%= job.company %> | <%= job.posting_date %> | <%= fa_icon "map-marker" %> <%= job.location %> </small>
+      <p><%= sanitize(truncate(job.description, length: 150)) %></p>
+    </div>
+    <% end %>
   <% end %>
   <%= paginate @jobs %>
 </div> <!-- end col-sm-6 -->
