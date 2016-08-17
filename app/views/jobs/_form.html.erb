@@ -18,10 +18,11 @@
         <%= f.text_field :company  %>
         <%= f.text_area :description %>
         <%= f.text_field :location %>
-        <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Select Category' %>
-        <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :name, label: "Skills Needed" %>
+        <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Select Category'%>
+        <%= f.label "Skills Needed" %>
+        <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :name, label: (fa_icon 'cogs-o 2x') %>
         <%= f.fields_for :skills, @job.skills.build do |skills_fields| %>
-          <%= skills_fields.text_field :name, label: "Another Skill", placeholder: "Add a new skill here...(optional)" %>
+          <%= skills_fields.text_field :name, label: "Another Skill (Optional)", placeholder: "Add a new skill here..." %>
         <% end %>
         <%= f.url_field :url, placeholder: "optional..." %>
         <%= f.submit class: "btn btn-primary btn-outline btn-sm" %>

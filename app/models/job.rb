@@ -3,6 +3,7 @@ class Job < ApplicationRecord
   belongs_to :category
   has_many :jobs_skills
   has_many :skills, :through => :jobs_skills
+  accepts_nested_attributes_for :skills
 
   def posting_date
     self.created_at.strftime("%b %d, %Y")
