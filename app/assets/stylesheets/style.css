@@ -235,6 +235,11 @@ h1, h2, h3, h4, h5, h6, figure {
   padding-bottom: 1em;
 }
 
+.checkbox{
+	display: inline;
+	margin-left: 1.3em;
+}
+
 .panel.panel-default.filter {
 
 }
