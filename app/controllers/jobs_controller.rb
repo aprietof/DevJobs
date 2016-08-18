@@ -35,9 +35,9 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     authorize @job
     if @job.save
-      redirect_to @job
+      redirect_to @job, alert: "Job offer succesfully created"
     else
-      render 'new'
+      render 'new', alert: "Oops!, please try again!"
     end
   end
 
@@ -48,11 +48,13 @@ class JobsController < ApplicationController
   def update
     authorize @job
     @job.update(job_params)
+    redirect_to @job, alert: "Job offer succesfully updated"
   end
 
   def destroy
     authorize @job
     @job.destroy
+    redirect_to root_path, alert: "Job offer succesfully deleted"
   end
 
   private
