@@ -16,6 +16,9 @@
           <%= f.password_field :password, autocomplete: "off" %>
           <%= f.password_field :password_confirmation, autocomplete: "off" %>
 
+          <%= f.check_box_tag "user[role]", "company" %>
+          <%= f.label_tag :role, "I am a Company"%> <br>
+
           <%= f.submit "Sign up", class: "btn btn-primary btn-outline btn-sm" %>
       <% end %>
     </div>
