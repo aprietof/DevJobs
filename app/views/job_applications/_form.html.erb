@@ -2,6 +2,11 @@
 
   <%= f.hidden_field :user_id, :value => params[:user_id] %>
   <%= f.hidden_field :job_id, :value => params[:job_id] %>
+  <div class="row">
+    <div class="col-sm-3">
+      <%= f.number_field :years_of_experience %>
+    </div>
+  </div>
   <%= f.text_area :message, label: "Tell us about your self"  %>
 
   <div class="row">
