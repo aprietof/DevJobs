@@ -26,7 +26,7 @@
           <div class="col-sm-2 pull-right">
             <%= button_to "Apply", jobs_path, method: "get", class: "btn btn-primary btn-outline btn-md" %>
           </div>
-        <% else %>
+        <% elsif current_user.company? && current_user.id == @job.user_id %>
           <div class="col-sm-2 pull-right">
             <%= button_to "Edit", edit_job_path, method: "get", class: "btn btn-warning btn-outline btn-md" %>
           </div>
