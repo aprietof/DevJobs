@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :except => [:index]
+  after_action :verify_authorized, except: :index
 
   def index
     @latest_jobs = Job.all_sort_by_date_skip_first
@@ -21,15 +22,18 @@ class JobsController < ApplicationController
 
   def new
     @job = Job.new
+    authorize @job
   end
 
   def show
     @jobs = Job.all_sort_by_date.page.limit(8)
+    authorize @job
   end
 
   def create
 
     @job = Job.new(job_params)
+    authorize @job
     if @job.save
       redirect_to @job
     else
@@ -38,16 +42,17 @@ class JobsController < ApplicationController
   end
 
   def edit
+    authorize @job
   end
 
   def update
+    authorize @job
     @job.update(job_params)
-    redirect_to @job
   end
 
   def destroy
+    authorize @job
     @job.destroy
-    redirect_to root_path
   end
 
   private
