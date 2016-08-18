@@ -1,2 +1,10 @@
-<h1>JobApplications#new</h1>
-<p>Find me in app/views/job_applications/new.html.erb</p>
+<div class="col-sm-8">
+  <h1>Apply for this Job <%= fa_icon "pencil" %></h1>
+
+  <div class="well">
+    <h3><%= current_job.title %></h3>
+    <h4><%= fa_icon "industry" %> <%= current_job.company_name.capitalize %> | <%= fa_icon "map-marker" %> <%= current_job.location %></h4>
+    <p><%= current_job.description %></p>
+    <%= render 'form' %>
+  </div>
+</div>

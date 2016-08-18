@@ -24,7 +24,7 @@
         <div class="row">
         <% if current_user.user? %>
           <div class="col-sm-2 pull-right">
-            <%= button_to "Apply", jobs_path, method: "get", class: "btn btn-primary btn-outline btn-md" %>
+            <%= link_to "Apply", new_job_application_path(job_id: @job.id, user_id: current_user), class: "btn btn-primary btn-outline btn-md" %>
           </div>
         <% elsif current_user.company? && current_user.id == @job.user_id %>
           <div class="col-sm-2 pull-right">

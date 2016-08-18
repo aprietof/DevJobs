@@ -1,0 +1,10 @@
+<%= bootstrap_form_for(@job_application) do |f| %>
+
+  <%= f.hidden_field :user_id, :value => params[:user_id] %>
+  <%= f.hidden_field :job_id, :value => params[:job_id] %>
+  <%= f.text_area :message, label: "Tell us about your self"  %>
+
+  <div class="row">
+    <%= f.submit "Send Application", class: "btn btn-primary btn-outline btn-sm pull-right" %>
+  </div>
+<% end %>
