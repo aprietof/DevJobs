@@ -8,6 +8,8 @@ class User < ApplicationRecord
   enum role: [:user, :company, :admin]
 
   has_many :jobs, :foreign_key => 'user_id'
+  has_many :job_applications
+  has_many :jobs, :through => :job_applications, :foreign_key => 'user_id'
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

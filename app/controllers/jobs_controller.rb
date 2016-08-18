@@ -31,13 +31,13 @@ class JobsController < ApplicationController
   end
 
   def create
-
     @job = Job.new(job_params)
     authorize @job
+
     if @job.save
       redirect_to @job, alert: "Job offer succesfully created"
     else
-      render 'new', alert: "Oops!, please try again!"
+      render new_job_path, alert: "Oops!, please try again!"
     end
   end
 

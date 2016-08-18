@@ -3,7 +3,7 @@ class Job < ApplicationRecord
   belongs_to :company, :class_name => 'User', :foreign_key => 'user_id'
   belongs_to :category
   has_many :job_applications
-  has_many :applcants, :class_name => 'User', :foreign_key => 'user_id'
+  has_many :applicants, :through => :job_applications, :class_name => 'User'
   has_many :jobs_skills
   has_many :skills, :through => :jobs_skills
   accepts_nested_attributes_for :skills
