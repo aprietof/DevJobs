@@ -25,7 +25,7 @@
           <%= skills_fields.text_field :name, label: "Another Skill (Optional)", placeholder: "Add a new skill here..." %>
         <% end %>
         <%= f.url_field :url, placeholder: "http//...", label: "Url (Optional)" %>
-        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :user_id, :value => current_user.id unless :user_id %>
         <%= f.submit class: "btn btn-primary btn-outline btn-sm" %>
       <% end %>
     </div>
