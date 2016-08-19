@@ -1,2 +1,32 @@
-<h1>JobApplications#index</h1>
-<p>Find me in app/views/job_applications/index.html.erb</p>
+<div class="col-sm-3">
+
+</div> <!-- End col-sm-3 -->
+
+<div class="col-sm-6">
+  <% if @job_applications.empty? %>
+    <h1>You dont have any applications.</h1>
+  <% else %>
+    <div class="well">
+      <h2>Applications</h2>
+      <% @job_applications.each do |application| %>
+        <li><%= link_to application.job.title, user_job_application_path(current_user, application)%> <small>Applied on <%= application.posting_date%></small></li>
+        <%= fa_icon 'industry' %> <%= application.job.company_name %> | <%= application.job.category.name %>
+        <hr>
+      <% end %>
+    </div>
+  <% end %>
+  <%= paginate @job_applications %>
+</div> <!-- end col-sm-6 -->
+
+<div class="col-sm-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">Latest Jobs</div>
+      <div class="panel-body">
+        <% @latest_jobs.each do |job| %>
+          <small><%= job.location%></small> | <small><%= job.posting_date %></small>
+          <h5><%= link_to job.title, job_path(job) %></h5>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div><!-- end col-sm-3 -->
