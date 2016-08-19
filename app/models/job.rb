@@ -1,4 +1,7 @@
 class Job < ApplicationRecord
+  include Sortable::InstanceMethods
+  extend Sortable::ClassMethods
+
   validates_presence_of :title, :description, :company_name, :location, :category_id
   belongs_to :company, :class_name => 'User', :foreign_key => 'user_id'
   belongs_to :category
@@ -8,9 +11,6 @@ class Job < ApplicationRecord
   has_many :skills, :through => :jobs_skills
   accepts_nested_attributes_for :skills
 
-  def posting_date
-    self.created_at.strftime("%b %d, %Y")
-  end
 
   def self.by_category(category_id)
     where(category: category_id)
@@ -24,16 +24,8 @@ class Job < ApplicationRecord
     self.by_category(category_id).by_location(location_name)
   end
 
-  def self.all_sort_by_date
-    self.all.order(created_at: "DESC" )
-  end
-
   def self.all_sort_by_date_skip_first
     self.all_sort_by_date.limit(9)[1..-1]
-  end
-
-  def self.order_and_paginated(params)
-    self.all_sort_by_date.page(params).per(5)
   end
 
   def self.locations

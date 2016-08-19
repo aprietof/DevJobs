@@ -4,18 +4,19 @@ class JobsController < ApplicationController
   after_action :verify_authorized, except: :index
 
   def index
+    @items_per_page = 5
     @latest_jobs = Job.all_sort_by_date_skip_first
     @locations = Job.locations
     @categories = Category.all
 
     if !params[:category].blank? && !params[:location].blank?
-      @jobs = Job.by_location_and_category(params[:category], params[:location]).order_and_paginated(params[:page])
+      @jobs = Job.by_location_and_category(params[:category], params[:location]).order_and_paginated(params[:page], @items_per_page)
     elsif !params[:category].blank?
-      @jobs = Job.by_category(params[:category]).order_and_paginated(params[:page])
+      @jobs = Job.by_category(params[:category]).order_and_paginated(params[:page], @items_per_page)
     elsif !params[:location].blank?
-      @jobs = Job.by_location(params[:location]).order_and_paginated(params[:page])
+      @jobs = Job.by_location(params[:location]).order_and_paginated(params[:page], @items_per_page)
     else
-      @jobs = Job.order_and_paginated(params[:page])
+      @jobs = Job.order_and_paginated(params[:page], @items_per_page)
     end
 
   end
