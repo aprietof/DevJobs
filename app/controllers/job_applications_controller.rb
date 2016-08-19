@@ -1,5 +1,5 @@
 class JobApplicationsController < ApplicationController
-  # before_action :set_job_application, :except => [:index]
+  before_action :set_job_application, :except => [:index, :new, :create]
 
   def index
     @items_per_page = 9
@@ -31,6 +31,7 @@ class JobApplicationsController < ApplicationController
   end
 
   def show
+    @jobs = Job.all_sort_by_date.limit(8)
   end
 
   def edit

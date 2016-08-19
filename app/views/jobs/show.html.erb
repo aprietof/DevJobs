@@ -1,6 +1,6 @@
 <div class="row">
 
-  <div class="col-sm-8">
+  <div class="col-sm-9">
     <div class="well">
       <h1><%= @job.title %></h1>
       <small>Posted: <%= @job.posting_date %></small>
@@ -36,6 +36,7 @@
         <% end %>
       </div>
     </div>
+    <%= button_to "Back", jobs_path, method: "get", class: "btn btn-primary btn-outline btn-sm" %>
   </div>
 
   <div class="col-sm-3">
@@ -51,5 +52,3 @@
   </div>
 
 </div>
-
-<%= button_to "Back", jobs_path, method: "get", class: "btn btn-primary btn-outline btn-sm" %>

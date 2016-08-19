@@ -1,2 +1,35 @@
-<h1>JobApplications#show</h1>
-<p>Find me in app/views/job_applications/show.html.erb</p>
+<div class="col-sm-9">
+  <div class="well">
+    <h1><%= @job_application.job.title %></h1>
+    <small>Posted: <%= @job_application.job.posting_date %></small>
+    <h4><span class="label label-default"><%= @job_application.job.category.name %></span></h4>
+    <h3>Company:</h3>
+    <p><%= fa_icon "industry" %> <%= @job_application.job.company_name.capitalize %> | <%= fa_icon "map-marker" %> <%= @job_application.job.location %></p>
+    <h4>Description:</h4>
+    <p><%= @job_application.job.description %></p>
+    <h5>Company Url: <%= link_to @job_application.job.url, "http://#{@job_application.job.url}" %></h5>
+
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h4>Skills Required:</h4>
+        <% @job_application.job.skills.each do |skill| %>
+          <small><%= skill.name %> | </small>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= link_to "Back", 'javascript:history.go(-1);', class: "btn btn-primary btn-outline btn-sm" %>
+</div>
+
+<div class="col-sm-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">Latest Jobs</div>
+      <div class="panel-body">
+        <% @jobs.each do |job| %>
+          <small><%= job.location%></small> | <small><%= job.posting_date %></small>
+          <h5><%= link_to job.title, job_path(job) %></h5>
+        <% end %>
+      </div>
+  </div>
+</div>
