@@ -1,7 +1,6 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :except => [:index]
-  after_action :verify_authorized, except: :index
 
   def index
     @items_per_page = 5
@@ -49,6 +48,11 @@ class JobsController < ApplicationController
     authorize @job
     @job.update(job_params)
     redirect_to @job, alert: "Job offer succesfully updated"
+  end
+
+  def dashboard
+    @latest_jobs = Job.all_sort_by_date.limit(9)
+    @jobs = current_user.jobs.order_and_paginated(params[:page], 5)
   end
 
   def destroy
