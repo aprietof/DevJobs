@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   end
 
   resources :jobs, :categories, :job_applications
+
+  get '/dashboard' => 'jobs#dashboard'
 end
