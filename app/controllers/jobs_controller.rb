@@ -18,7 +18,6 @@ class JobsController < ApplicationController
     else
       @jobs = Job.order_and_paginated(params[:page], @items_per_page)
     end
-
   end
 
   def new
@@ -64,6 +63,6 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:title, :description, :company_name ,:url, :location, :category_id, :user_id, skill_ids:[], skills_attributes:[:name])
+    params.require(:job).permit(:title, :description, :company_name ,:url, :location, :category_id, :company_id, skill_ids:[], skills_attributes:[:name])
   end
 end
