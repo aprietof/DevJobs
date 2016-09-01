@@ -1,0 +1,9 @@
+<h1><%= @category.name %></h1>
+
+<p>Created: <%= @category.posting_date %></p>
+
+<% if policy(@category).update? %>
+  <p><%= button_to "Edit", edit_category_path, method: "get", class: "btn btn-warning btn-outline btn-md" %></p>
+  <p><%= button_to "Delete", category_path, method: "delete", class: "btn btn-danger btn-outline btn-md" %></p>
+  <p><%= link_to "Go to Categories", categories_path, class: "btn btn-primary btn-outline btn-md" %></p>
+<% end %>

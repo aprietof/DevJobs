@@ -1,0 +1,20 @@
+<div class="col-sm-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Categories</h3>
+    </div>
+    <div class="panel-body">
+      <% @categories.each do |category| %>
+      <ul>
+        <li><%= link_to category.name, category_path(category) %></li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-8">
+<% if current_user.admin? %>
+  <%= link_to (fa_icon 'plus').to_s + "  Add New Category", new_category_path, class: "btn btn-default btn-outline btn-md" %>
+<% end %>
+</div>
