@@ -6,8 +6,15 @@
     <div class="panel-heading"><h1>Applications</h1></div>
     <div class="panel-body">
       <% @job_applications.each do |application| %>
-        <li><%= link_to application.job.title, user_job_application_path(current_user, application)%> <small>Applied on <%= application.posting_date%></small></li>
+        <% if current_user.admin? %>
+          <li><%= link_to application.job.title, job_path(application.job)%> <small>Applied on <%= application.posting_date%></small></li>
+        <% else %>
+          <li><%= link_to application.job.title, user_job_application_path(current_user, application)%> <small>Applied on <%= application.posting_date%></small></li>
+        <% end %>
         <%= fa_icon 'industry' %> <%= application.job.company_name %> | <%= application.job.category.name %>
+        <% if current_user.admin? %>
+          <li>Applicant: <%= application.applicant.email %></li>
+        <% end %>
         <br></br>
       <% end %>
     </div>

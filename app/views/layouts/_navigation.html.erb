@@ -13,7 +13,7 @@
           <li class="cta"><%= link_to (fa_icon 'power-off') + "  Log out", destroy_user_session_path, :method => 'delete' %></li>
         <% else %>
           <li><%= fa_icon 'user' %> logged in as: <%= link_to current_user.email, edit_user_registration_path %></li>
-          <li class="cta"><%= link_to "My Job Applications", job_applications_path %></li>
+          <li class="cta"><%= link_to "My Job Applications", job_applications_path unless current_user.admin? %></li>
           <li class="cta"><%= link_to (fa_icon 'power-off') + "  Log out", destroy_user_session_path, :method => 'delete' %></li>
         <% end %>
       </ul>
