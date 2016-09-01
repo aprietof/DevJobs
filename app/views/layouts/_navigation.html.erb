@@ -7,12 +7,14 @@
             <li class="cta"><%= link_to "Sign up", new_user_registration_path %></li>
             <li class="cta"><%= link_to "Log in", new_user_session_path %></li>
         <% elsif current_user.company? %>
-          <li class="cta"><%= fa_icon 'user' %> Logged in as: <%= current_user.email %></li>
+          <li><%= fa_icon 'user' %> logged in as: <%= link_to current_user.email, edit_user_registration_path %></li>
+          <li><%= link_to "My Job Offers", dashboard_path %></li>
           <li class="cta"><%= link_to "Post a Job Offer", new_job_path %></li>
-          <li class="cta"><%= link_to "Log out", destroy_user_session_path, :method => 'delete' %></li>
+          <li class="cta"><%= link_to (fa_icon 'power-off') + "  Log out", destroy_user_session_path, :method => 'delete' %></li>
         <% else %>
-          <li class="cta"><%= fa_icon 'user' %> Logged in as: <%= current_user.email %></li>
-          <li class="cta"><%= link_to "Log out", destroy_user_session_path, :method => 'delete' %></li>
+          <li><%= fa_icon 'user' %> logged in as: <%= link_to current_user.email, edit_user_registration_path %></li>
+          <li class="cta"><%= link_to "My Job Applications", job_applications_path %></li>
+          <li class="cta"><%= link_to (fa_icon 'power-off') + "  Log out", destroy_user_session_path, :method => 'delete' %></li>
         <% end %>
       </ul>
     </nav>
