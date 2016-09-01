@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   enum role: [:user, :company, :admin]
 
-  has_many :jobs, :foreign_key => 'company_id'
+  has_many :jobs, :foreign_key => 'company_id', :dependent => :destroy
   has_many :job_applications, :foreign_key => 'user_id'
 
   def self.from_omniauth(auth)
