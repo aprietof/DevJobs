@@ -1,19 +1,17 @@
-<div class="col-sm-3">
-
-</div> <!-- End col-sm-3 -->
-
-<div class="col-sm-6">
+<div class="col-sm-9">
   <% if @job_applications.empty? %>
     <h1>You dont have any applications.</h1>
   <% else %>
-    <div class="well">
-      <h2>Applications</h2>
+  <div class="panel panel-default">
+    <div class="panel-heading"><h1>Applications</h1></div>
+    <div class="panel-body">
       <% @job_applications.each do |application| %>
         <li><%= link_to application.job.title, user_job_application_path(current_user, application)%> <small>Applied on <%= application.posting_date%></small></li>
         <%= fa_icon 'industry' %> <%= application.job.company_name %> | <%= application.job.category.name %>
-        <hr>
+        <br></br>
       <% end %>
     </div>
+  </div>
   <% end %>
   <%= paginate @job_applications %>
 </div> <!-- end col-sm-6 -->
