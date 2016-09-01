@@ -4,26 +4,23 @@ class JobApplicationsController < ApplicationController
   def index
     @items_per_page = 9
     @latest_jobs = Job.all_sort_by_date_skip_first
-
-    if params[:user_id]
-      @job_applications = User.find(params[:user_id]).job_applications.order_and_paginated(params[:page], @items_per_page)
-    else
-      @job_applications = JobApplication.order_and_paginated(params[:page], @items_per_page)
-    end
+    @job_applications = current_user.job_applications.order_and_paginated(params[:page], @items_per_page)
   end
 
   def new
     @job_application = JobApplication.new
+    authorize @job_application
   end
 
   def create
     @job_application = JobApplication.find_by_user_id_and_job_id(params[:job_application][:user_id], params[:job_application][:job_id])
+    authorize @job_application
     if !@job_application.nil?
       redirect_to root_path, alert: "You already applied for this job."
     else
       @job_application = JobApplication.new(job_application_params)
       if @job_application.save
-        redirect_to root_path, alert: "Your application has ben sent. Good Luck!"
+        redirect_to root_path, alert: "Your application has been sent. Good Luck!"
       else
         render_to new_job_application_path, alert: "Oops, there was a problem, please try again"
       end
@@ -31,16 +28,20 @@ class JobApplicationsController < ApplicationController
   end
 
   def show
+    authorize @job_application
     @jobs = Job.all_sort_by_date.limit(8)
   end
 
   def edit
+    authorize @job_application
   end
 
   def update
+    authorize @job_application
   end
 
   def destroy
+    authorize @job_application
     @job_application.destroy
     redirect_to root_path
   end
