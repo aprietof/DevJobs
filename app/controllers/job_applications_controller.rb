@@ -4,7 +4,12 @@ class JobApplicationsController < ApplicationController
   def index
     @items_per_page = 9
     @latest_jobs = Job.all_sort_by_date_skip_first
-    @job_applications = current_user.job_applications.order_and_paginated(params[:page], @items_per_page)
+
+    if params[:user_id] || current_user.user?
+      @job_applications = current_user.job_applications.order_and_paginated(params[:page], @items_per_page)
+    elsif current_user.admin?
+      @job_applications = JobApplication.order_and_paginated(params[:page], @items_per_page)
+    end
   end
 
   def new

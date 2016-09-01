@@ -8,13 +8,17 @@ class JobsController < ApplicationController
     @locations = Job.locations
     @categories = Category.all
 
+    # Filter by Category and Location
     if !params[:category].blank? && !params[:location].blank?
       @jobs = Job.by_location_and_category(params[:category], params[:location]).order_and_paginated(params[:page], @items_per_page)
+    # Filter by Category Only
     elsif !params[:category].blank?
       @jobs = Job.by_category(params[:category]).order_and_paginated(params[:page], @items_per_page)
+    # Filter by Location Only
     elsif !params[:location].blank?
       @jobs = Job.by_location(params[:location]).order_and_paginated(params[:page], @items_per_page)
     else
+    # All Jobs
       @jobs = Job.order_and_paginated(params[:page], @items_per_page)
     end
   end
@@ -51,8 +55,12 @@ class JobsController < ApplicationController
   end
 
   def dashboard
-    @latest_jobs = Job.all_sort_by_date.limit(9)
-    @jobs = current_user.jobs.order_and_paginated(params[:page], 5)
+    if current_user.company?
+      @jobs = current_user.jobs.order_and_paginated(params[:page], 5)
+      @latest_jobs = Job.all_sort_by_date.limit(9)
+    else
+      redirect_to root_path, alert: "You are not authorized to see that page."
+    end
   end
 
   def destroy
