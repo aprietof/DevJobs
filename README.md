@@ -1,6 +1,6 @@
 # DevJobs
 
-This is a ruby on Rails job board web application that includes signup, login, logout and third party facebook signup/login.
+This is a ruby on Rails v5.0 job board web application that includes signup, login, logout and third party facebook signup/login.
 
 ###Uses ActiveRecord Model Associations between:
 
@@ -10,7 +10,7 @@ This is a ruby on Rails job board web application that includes signup, login, l
 - Category
 - Skill
 
-This App offers the following characteristics depending on the user role:
+This App offers the following characteristics depending on user role:
 
 ##Roles:
 
@@ -31,20 +31,8 @@ Can manipulate app data.
 
 ## Usage
 
-To use this app, just clone, run:
+To use this app, just clone, run `bundle install`, `rake db:migrate`, then run `rails s`.
 
-```
-bundle install
-```
-
-```
-rake db:migrate
-```
-then run:
-
-```
-rails s
-```
 Everything should be set up.
 
 ## Contributing Bugfixes or Features
