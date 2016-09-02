@@ -35,7 +35,7 @@ class Job < ApplicationRecord
   def skills_attributes=(skill_attributes)
     skill_attributes.values.each do |skill_attribute|
       skill = Skill.find_or_create_by(skill_attribute)
-      self.jobs_skills.build(skill: skill)
+      self.jobs_skills.build(skill_id: skill.id)
     end
   end
 
