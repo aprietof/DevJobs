@@ -18,12 +18,14 @@ class JobApplicationsController < ApplicationController
   end
 
   def create
+
     @job_application = JobApplication.find_by_user_id_and_job_id(params[:job_application][:user_id], params[:job_application][:job_id])
-    authorize @job_application
+
     if !@job_application.nil?
       redirect_to root_path, alert: "You already applied for this job."
     else
       @job_application = JobApplication.new(job_application_params)
+      authorize @job_application
       if @job_application.save
         redirect_to root_path, alert: "Your application has been sent. Good Luck!"
       else
