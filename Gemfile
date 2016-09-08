@@ -17,7 +17,7 @@ gem "twitter-bootstrap-rails"
 gem 'bootstrap_form'
 gem "font-awesome-rails"
 gem 'omniauth-facebook'
-
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'byebug', platform: :mri
