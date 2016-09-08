@@ -30,6 +30,10 @@ class JobsController < ApplicationController
 
   def show
     @jobs = Job.all_sort_by_date.page.limit(8)
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @job}
+    end
     authorize @job
   end
 
