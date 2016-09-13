@@ -3,7 +3,7 @@ class JobsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
 
   def index
-    @items_per_page = 5
+    @items_per_page = 100
     @latest_jobs = Job.all_sort_by_date_skip_first
     @locations = Job.locations
     @categories = Category.all
@@ -11,15 +11,31 @@ class JobsController < ApplicationController
     # Filter by Category and Location
     if !params[:category].blank? && !params[:location].blank?
       @jobs = Job.by_location_and_category(params[:category], params[:location]).order_and_paginated(params[:page], @items_per_page)
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render json: @jobs}
+      end
     # Filter by Category Only
     elsif !params[:category].blank?
       @jobs = Job.by_category(params[:category]).order_and_paginated(params[:page], @items_per_page)
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render json: @jobs}
+      end
     # Filter by Location Only
     elsif !params[:location].blank?
       @jobs = Job.by_location(params[:location]).order_and_paginated(params[:page], @items_per_page)
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render json: @jobs}
+      end
     else
     # All Jobs
       @jobs = Job.order_and_paginated(params[:page], @items_per_page)
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render json: @jobs}
+      end
     end
   end
 
