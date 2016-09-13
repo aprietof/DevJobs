@@ -3,6 +3,10 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @categories}
+    end
   end
 
   def new
@@ -22,6 +26,10 @@ class CategoriesController < ApplicationController
 
   def show
     authorize @category
+    respond_to do |format|
+      format.html {render :show }
+      format.json {render json: @category}
+    end
   end
 
   def edit
