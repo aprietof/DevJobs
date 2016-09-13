@@ -36,7 +36,14 @@ class JobApplicationsController < ApplicationController
 
   def show
     authorize @job_application
-    @jobs = Job.all_sort_by_date.limit(8)
+    @jobs = Job.all_sort_by_date.limit(100)
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @job_application.to_json(only: [:id],
+        include: [job: {only: [:id, :title, :description, :company_name, :url,
+         :location, :created_at, :company_id, :created_at],
+         include: [category: {only: [:name]}]}])}
+    end
   end
 
   def edit
