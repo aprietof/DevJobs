@@ -1,5 +1,5 @@
 <div class="col-sm-9">
-  <div class="well">
+  <div class="well job-application">
     <div class="row">
       <div class="col-sm-10">
         <h1 id="title"><%= @job_application.job.title %></h1>
@@ -40,3 +40,75 @@
       </div>
   </div>
 </div>
+
+<script type="text/javascript">
+
+  // Get user Id
+  var userId = $('.next').attr('data-userId')
+
+  var jobs = []
+  var idsArray = []
+  // Get All User Job Applications (AJAX)
+  $.get('/users/'+ userId +'/job_applications.json', function(data) {
+    $.each(data, function(index, jobApp) {
+      var newJob = new Job (jobApp.id, jobApp["job"]["title"], jobApp["job"]["description"],
+      jobApp["job"]["company_name"], jobApp["job"]["url"], jobApp["job"]["location"],
+      jobApp["job"]["created_at"], jobApp["job"]["category"]["name"])
+      jobs.push(newJob);
+      idsArray.push(newJob.id)
+    })
+  });
+
+  $('.next').on('click', function(event) {
+    var jobId = parseInt($('.next').attr('data-id'))
+    var maxIndex = idsArray.length - 1
+    var nextIdindex = idsArray.indexOf(jobId) + 1
+
+    // Check if is the last job Application and start over
+    if (nextIdindex > maxIndex) {
+      nextIdindex = 0
+    }
+
+    //Job to show when click
+    var nextJob = jobs[nextIdindex]
+    // Add New HTML to the DOM
+    $('h1#title').html(nextJob.title);
+    $('small#posted').html('Posted: '+ nextJob.createdAt());
+    $('span.category').html(nextJob.category)
+    $('p#info').html('<i class="fa fa-industry"></i> ' + nextJob.companyName + ' | <i class="fa fa-map-marker"></i> ' + nextJob.location);
+    $('p#description').html(nextJob.description)
+    $('h5#url').html(nextJob.url)
+    $('.skills').empty();
+
+    // Update Job id
+    $('.next').attr('data-id', nextJob.id)
+
+    event.preventDefault();
+  })
+
+
+// Job Object Constructor Function
+function Job (id, title, description, companyName, url, location, created_at, category) {
+  this.id = id;
+  this.title = title;
+  this.description = description;
+  this.companyName = companyName;
+  this.url = url;
+  this.location = location;
+  this.created_at = created_at;
+  this.category = category;
+
+  // Format created_at attribute function
+  this.createdAt = function() {
+    var monthNames = new Array("January", "February", "March",
+    "April", "May", "June", "July", "August", "September",
+    "October", "November", "December");
+    var date = new Date(this.created_at);
+    var day = date.getDate();
+    var monthFormat = date.getMonth();
+    var year = date.getFullYear();
+    return monthNames[monthFormat].slice(0,3) + " " + day + "," + year
+  };
+}
+
+</script>
