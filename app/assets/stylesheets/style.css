@@ -1256,3 +1256,7 @@ textarea.form-control {
   color: #1aa3ff;
   text-decoration: none;
 }
+
+.job-application {
+  min-height: 600px;
+}
