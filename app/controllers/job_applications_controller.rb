@@ -2,11 +2,18 @@ class JobApplicationsController < ApplicationController
   before_action :set_job_application, :except => [:index, :new, :create]
 
   def index
-    @items_per_page = 9
+    @items_per_page = 100
     @latest_jobs = Job.all_sort_by_date_skip_first
 
     if params[:user_id] || current_user.user?
       @job_applications = current_user.job_applications.order_and_paginated(params[:page], @items_per_page)
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render json: @job_applications.to_json(only: [:id],
+          include: [job: {only: [:id, :title, :description, :company_name, :url,
+           :location, :created_at, :company_id, :created_at],
+           include: [category: {only: [:name]}]}])}
+      end
     elsif current_user.admin?
       @job_applications = JobApplication.order_and_paginated(params[:page], @items_per_page)
     end
@@ -36,7 +43,7 @@ class JobApplicationsController < ApplicationController
 
   def show
     authorize @job_application
-    @jobs = Job.all_sort_by_date.limit(100)
+    @jobs = Job.all_sort_by_date.limit(8)
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @job_application.to_json(only: [:id],
