@@ -1,3 +1,53 @@
 <h1>Create a new Job Offer <%= fa_icon "pencil"%></h1>
 
 <%= render 'form' %>
+
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Job Posting Summary</h3>
+    </div>
+      <div class="panel-body">
+        <p id="title">Title: </p>
+        <p id="description">Description: </p>
+        <p id="company">Company: </p>
+        <p id="location">Location: </p>
+        <p id="category">Category: </p>
+      </div>
+  </div>
+</div>
+
+<!-- script to prevent from reloading page and send post req using JSON -->
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+
+      // this = form
+      var values = $(this).serialize(); // to JSON
+
+      // var posting = $.post(url, jason data);
+      var posting = $.post('/jobs', values);
+
+      posting.done(function(data) {
+
+        //Handle response
+        var job = data
+
+        $('#title').append(job.title);
+        $('#category').append(job.category.name);
+        $('#company').append(job.company_name);
+        $('#location').append(job.location);
+        $('#description').append(job.description);
+        $('.panel-default').removeClass('panel-default').addClass('panel-success')
+        console.log("Job posted succesfully")
+        // Clear form
+        document.getElementById("new_job").reset();
+        // Scroll to top
+        window.scrollTo(0, 0);
+      });
+    });
+  });
+</script>

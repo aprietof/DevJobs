@@ -1,33 +1,30 @@
-<div class="row">
+<div class="col-md-6">
+  <div class="well">
+    <%= bootstrap_form_for @job do |f| %>
 
-  <div class="col-md-6">
-    <div class="well">
-      <%= bootstrap_form_for @job do |f| %>
-
-      <% if current_user.errors.any? %>
-          <div id="error_explanation" class="errors">
-            <ul>
-            <% current_user.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <%= f.text_field :title, placeholder: "Title Here...", label: "Title* (Required)" %>
-        <%= f.text_field :company_name, placeholder: "Company Name Here...", label: "Company Name* (Required)" %>
-        <%= f.text_area :description, placeholder: "Add a description Here...", label: "Description* (Required)" %>
-        <%= f.text_field :location, placeholder: "Location Here...", label: "location* (Required)" %>
-        <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Select Category', label: "Category* (required)"%>
-        <%= f.label "Skills Needed" %>
-        <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :name, label: (fa_icon 'cogs-o 2x') %>
-        <%= f.fields_for :skills, @job.skills.build do |skills_fields| %>
-          <%= skills_fields.text_field :name, label: "Another Skill (Optional)", placeholder: "Add a new skill here..." %>
-        <% end %>
-        <%= f.url_field :url, placeholder: "http://...", label: "Url (Optional) - Must start with http://" %>
-        <%=  f.hidden_field :company_id, :value => current_user.id unless @job.company_id %>
-        <%= f.submit class: "btn btn-primary btn-outline btn-sm" %>
+    <% if current_user.errors.any? %>
+        <div id="error_explanation" class="errors">
+          <ul>
+          <% current_user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-    </div>
+
+      <%= f.text_field :title, placeholder: "Title Here...", label: "Title* (Required)" %>
+      <%= f.text_field :company_name, placeholder: "Company Name Here...", label: "Company Name* (Required)" %>
+      <%= f.text_area :description, placeholder: "Add a description Here...", label: "Description* (Required)" %>
+      <%= f.text_field :location, placeholder: "Location Here...", label: "location* (Required)" %>
+      <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Select Category', label: "Category* (required)"%>
+      <%= f.label "Skills Needed" %>
+      <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :name, label: (fa_icon 'cogs-o 2x') %>
+      <%= f.fields_for :skills, @job.skills.build do |skills_fields| %>
+        <%= skills_fields.text_field :name, label: "Another Skill (Optional)", placeholder: "Add a new skill here..." %>
+      <% end %>
+      <%= f.url_field :url, placeholder: "http://...", label: "Url (Optional) - Must start with http://" %>
+      <%=  f.hidden_field :company_id, :value => current_user.id unless @job.company_id %>
+      <%= f.submit class: "btn btn-primary btn-outline btn-sm" %>
+    <% end %>
   </div>
 </div>
