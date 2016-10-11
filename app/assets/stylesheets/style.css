@@ -1256,3 +1256,22 @@ textarea.form-control {
   color: #1aa3ff;
   text-decoration: none;
 }
+
+#notice_wrapper {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: rgba(135, 216, 211, 0.90);
+  display: none;
+}
+
+#notice_wrapper p {
+  padding: 2.5rem 0;
+  text-align: center;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 1px;
+}

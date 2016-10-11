@@ -8,11 +8,12 @@
   </head>
   <body>
     <header id="fh5co-header" role="banner">
+      <%= render 'layouts/messages' %>
       <%= render 'layouts/navigation' %>
     </header>
 
   <div class="container main" id="main" >
-    <%= render 'layouts/messages' %>
+
     <%= yield %>
   </div>
   <footer id="fh5co-footer" role="contentinfo">
