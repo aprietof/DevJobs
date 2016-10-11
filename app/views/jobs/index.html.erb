@@ -76,7 +76,16 @@ $(function() {
         } else {
           $.each(jobs, function(i, job) {
             // create a js Job Object using constructor
-            var newJob = new Job (job.id, job.title, job.description, job.company_name, job.url, job.location, job.created_at, job["category"]["name"])
+            var newJob = new Job (
+              job.id,
+              job.title,
+              job.description,
+              job.company_name,
+              job.url,
+              job.location,
+              job.created_at,
+              job["category"]["name"]
+            )
             // Create HTML
             html += '<div class="panel panel-default">'
             html += ' <div class="panel-body">'

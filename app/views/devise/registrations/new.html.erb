@@ -25,25 +25,3 @@
     <%= render "devise/shared/links" %>
   </div>
 </div>
-
-<!-- script to prevent from reloading page and send post req using JSON -->
-
-<script type="text/javascript" charset="utf-8">
-  $(function () {
-    $('form').submit(function(event) {
-      //prevent form from submitting the default way
-      event.preventDefault();
-
-      var values = $(this).serialize(); // to JSON
-      var posting = $.post('/posts', values);
-   // var posting = $.post(url, jason data);
-
-      posting.done(function(data) {
-        //Handle response
-        var post = data["post"]
-        $('#postTitle').text(post["title"]);
-        $('#postBody').text(post["description"]);
-      });
-    });
-  });
-</script>

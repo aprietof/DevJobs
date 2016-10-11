@@ -8,7 +8,7 @@
       <h3 class="panel-title">Job Posting Summary</h3>
     </div>
       <div class="panel-body">
-        <p id="title">Title: </p>
+        <p id="title">Title: <span></span> </p>
         <p id="description">Description: </p>
         <p id="company">Company: </p>
         <p id="location">Location: </p>
@@ -20,7 +20,7 @@
 <!-- script to prevent from reloading page and send post req using JSON -->
 
 <script type="text/javascript" charset="utf-8">
-  $(function () {
+  
     $('form').submit(function(event) {
       //prevent form from submitting the default way
       event.preventDefault();

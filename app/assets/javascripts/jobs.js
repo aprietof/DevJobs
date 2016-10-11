@@ -18,6 +18,7 @@ function Job(id, title, description, companyName, url, location, created_at, cat
         var day = date.getDate();
         var monthFormat = date.getMonth();
         var year = date.getFullYear();
+        // Returns date in "Sep 2,2016" format 
         return monthNames[monthFormat].slice(0, 3) + " " + day + "," + year
     };
 }
