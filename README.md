@@ -34,7 +34,7 @@ Can manipulate app data.
 To use this app, just clone, run `bundle install`, `rake db:migrate`, `rake db:seed`, then run `rails s`.
 
 ###Development "Company" User
-email => "test@gmail.com",
+email => "company@email.com",
 password => "password"
 
 **This user has a company role.**
