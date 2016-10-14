@@ -11,31 +11,22 @@ class JobsController < ApplicationController
     # Filter by Category and Location
     if !params[:category].blank? && !params[:location].blank?
       @jobs = Job.by_location_and_category(params[:category], params[:location]).order_and_paginated(params[:page], @items_per_page)
-      respond_to do |format|
-        format.html { render :index }
-        format.json { render json: @jobs}
-      end
+      respond_to_html_and_json(@jobs)
+
     # Filter by Category Only
     elsif !params[:category].blank?
       @jobs = Job.by_category(params[:category]).order_and_paginated(params[:page], @items_per_page)
-      respond_to do |format|
-        format.html { render :index }
-        format.json { render json: @jobs}
-      end
+      respond_to_html_and_json(@jobs)
+
     # Filter by Location Only
     elsif !params[:location].blank?
       @jobs = Job.by_location(params[:location]).order_and_paginated(params[:page], @items_per_page)
-      respond_to do |format|
-        format.html { render :index }
-        format.json { render json: @jobs}
-      end
+      respond_to_html_and_json(@jobs)
+
     else
     # All Jobs
       @jobs = Job.order_and_paginated(params[:page], @items_per_page)
-      respond_to do |format|
-        format.html { render :index }
-        format.json { render json: @jobs}
-      end
+      respond_to_html_and_json(@jobs)
     end
   end
 
@@ -90,11 +81,11 @@ class JobsController < ApplicationController
   end
 
   private
-  def set_job
-    @job = Job.find(params[:id])
-  end
+    def set_job
+      @job = Job.find(params[:id])
+    end
 
-  def job_params
-    params.require(:job).permit(:title, :description, :company_name ,:url, :location, :category_id, :company_id, skill_ids:[], skills_attributes:[:name])
-  end
+    def job_params
+      params.require(:job).permit(:title, :description, :company_name ,:url, :location, :category_id, :company_id, skill_ids:[], skills_attributes:[:name])
+    end
 end

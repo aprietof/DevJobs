@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
     redirect_to(request.referrer || root_path)
   end
 
+  def respond_to_html_and_json(variable)
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: variable}
+    end
+  end
+
   # def after_sign_in_path_for(resource_or_scope)
   #   jobs_path
   # end
